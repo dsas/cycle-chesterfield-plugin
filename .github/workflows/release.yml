@@ -1,0 +1,38 @@
+name: Release Plugin ZIP
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Build plugin zip
+        run: |
+          mkdir -p build/cycle-chesterfield
+          rsync -av \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude '.DS_Store' \
+            --exclude 'node_modules' \
+            --exclude '*.zip' \
+            ./ build/cycle-chesterfield/
+          cd build
+          zip -r cycle-chesterfield.zip cycle-chesterfield
+
+      - name: Create release
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --generate-notes \
+            build/cycle-chesterfield.zip
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
