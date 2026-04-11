@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cycle-chesterfield/ride-grade",
+	"version": "1.0.0",
+	"title": "Ride Grade",
+	"category": "widgets",
+	"icon": "buddicons-buddypress-logo",
+	"description": "Select a ride grade and automatically output the matching description.",
+	"textdomain": "cycle-chesterfield",
+	"editorScript": "cycle-chesterfield-ride-grade-editor",
+	"attributes": {
+		"grade": {
+			"type": "string",
+			"default": "1"
+		}
+	},
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"renaming": true
+	},
+	"render": "file:./render.php"
+}
