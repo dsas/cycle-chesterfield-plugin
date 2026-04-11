@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cycle-chesterfield/ride-grades",
+	"version": "1.0.0",
+	"title": "Ride Grades",
+	"category": "widgets",
+	"icon": "list-view",
+	"description": "Display all ride grades and their descriptions.",
+	"textdomain": "cycle-chesterfield",
+	"editorScript": "cycle-chesterfield-ride-grades-editor",
+	"supports": {
+		"html": false,
+		"renaming": true
+	},
+	"render": "file:./render.php"
+}

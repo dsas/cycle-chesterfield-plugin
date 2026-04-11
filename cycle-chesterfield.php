@@ -60,6 +60,21 @@ function cycle_chesterfield_register_blocks() {
 		'before'
 	);
 
+	wp_register_script(
+		'cycle-chesterfield-ride-grades-editor',
+		plugins_url( 'blocks/ride-grades/index.js', __FILE__ ),
+		$editor_script_dependencies,
+		filemtime( plugin_dir_path( __FILE__ ) . 'blocks/ride-grades/index.js' ),
+		true
+	);
+
+	wp_add_inline_script(
+		'cycle-chesterfield-ride-grades-editor',
+		'window.cycleChesterfieldRideGrades = ' . wp_json_encode( cycle_chesterfield_get_ride_grades() ) . ';',
+		'before'
+	);
+
 	register_block_type( __DIR__ . '/blocks/ride-grade' );
+	register_block_type( __DIR__ . '/blocks/ride-grades' );
 }
 add_action( 'init', 'cycle_chesterfield_register_blocks' );

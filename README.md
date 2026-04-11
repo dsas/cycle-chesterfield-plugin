@@ -12,6 +12,14 @@ The `Ride Grade` block lets editors choose a ride grade in the block settings an
 
 When inserted, the block renders a heading such as `Grade 1 Ride` followed by the appropriate ride description.
 
+This block is limited to one instance per post, which helps keep an event's ride difficulty clear and unambiguous.
+
+### Ride Grades
+
+The `Ride Grades` block displays all available ride grades together with their descriptions.
+
+Use this on explainer pages where you want visitors to compare the different ride levels side by side.
+
 ## Try It In Playground
 
 You can try the plugin in WordPress Playground here:
