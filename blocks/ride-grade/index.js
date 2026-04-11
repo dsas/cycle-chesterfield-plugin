@@ -5,12 +5,7 @@
 	const { Fragment, createElement } = element;
 	const { __ } = i18n;
 	const el = createElement;
-
-	const GRADE_DESCRIPTIONS = {
-		'1': __( 'Mostly level ride on good surfaces, maybe some small hills, under 10 miles. Suitable for all', 'cycle-chesterfield' ),
-		'2': __( 'Mostly level ride over 10 miles, some mixed surfaces, maybe some small hills OR a ride with several noticeable gradients / hills but under 10 miles. Suitable for riders with some experience and the ability to cycle over 10 miles or on several noticeable gradients / hills under 10 miles', 'cycle-chesterfield' ),
-		'3': __( 'Any ride on mixed terrain with noticeable gradients / hills and over 10 miles. Suitable for the more experienced rider who can maintain an easy moderate pace throughout.', 'cycle-chesterfield' )
-	};
+	const RIDE_GRADES = window.cycleChesterfieldRideGrades || {};
 
 	const GRADE_OPTIONS = [
 		{ label: __( 'Grade 1', 'cycle-chesterfield' ), value: '1' },
@@ -18,11 +13,32 @@
 		{ label: __( 'Grade 3', 'cycle-chesterfield' ), value: '3' }
 	];
 
+	const getGradeData = ( grade ) => RIDE_GRADES[ grade ] || RIDE_GRADES[ '1' ] || {
+		title: __( 'Grade 1 Ride', 'cycle-chesterfield' ),
+		description: ''
+	};
+
+	const renderGradePreview = ( grade, className ) => {
+		const gradeData = getGradeData( grade );
+
+		return el(
+			'div',
+			{
+				className
+			},
+			el(
+				'strong',
+				null,
+				gradeData.title
+			),
+			el( 'p', null, gradeData.description )
+		);
+	};
+
 	registerBlockType( 'cycle-chesterfield/ride-grade', {
 		edit: ( props ) => {
 			const { attributes, setAttributes } = props;
 			const grade = attributes.grade || '1';
-			const description = GRADE_DESCRIPTIONS[ grade ] || GRADE_DESCRIPTIONS[ '1' ];
 			const blockProps = useBlockProps( {
 				className: 'wp-block-cycle-chesterfield-ride-grade'
 			} );
@@ -33,31 +49,22 @@
 				el(
 					InspectorControls,
 					null,
-					el(
-						PanelBody,
-						{
-							title: __( 'Ride Grade', 'cycle-chesterfield' ),
-							initialOpen: true
-						},
+						el(
+							PanelBody,
+							{
+								title: __( 'Ride Grade', 'cycle-chesterfield' ),
+								initialOpen: true
+							},
 							el( SelectControl, {
 								label: __( 'Grade', 'cycle-chesterfield' ),
 								value: grade,
-									options: GRADE_OPTIONS,
+								options: GRADE_OPTIONS,
 								onChange: ( value ) => setAttributes( { grade: value } )
 							} )
 						)
 					),
-				el(
-					'div',
-					blockProps,
-							el(
-								'strong',
-								null,
-								__( 'Grade ', 'cycle-chesterfield' ) + grade + ' ' + __( 'Ride', 'cycle-chesterfield' )
-							),
-						el( 'p', null, description )
-					)
-			);
+					renderGradePreview( grade, blockProps.className )
+				);
 		},
 		save: () => null
 	} );
