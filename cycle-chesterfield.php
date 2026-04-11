@@ -3,7 +3,7 @@
  * Plugin Name: Cycle Chesterfield
  * Plugin URI:  https://github.com/dsas/cycle-chesterfield-plugin
  * Description: Custom functionality plugin for the Cycle Chesterfield site.
- * Version:     1.0.0
+ * Version:     1.1.0
  * Author:      Dean Sas
  * Text Domain: cycle-chesterfield
  */
