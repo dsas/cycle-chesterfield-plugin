@@ -12,6 +12,12 @@ The `Ride Grade` block lets editors choose a ride grade in the block settings an
 
 When inserted, the block renders a heading such as `Grade 1 Ride` followed by the appropriate ride description.
 
+## Try It In Playground
+
+You can try the plugin in WordPress Playground here:
+
+[Try Cycle Chesterfield in Playground](https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2Fdsas%2Fcycle-chesterfield-plugin%2Fmain%2Fblueprint.json)
+
 ## Releases
 
 GitHub Actions creates a release automatically when a tag matching `v*` is pushed to the repository.
