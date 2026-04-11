@@ -2,7 +2,7 @@
 
 ## What this plugin does
 
-This plugin provides Cycle Chesterfield specific snippets, customisations, and custom blocks for the site.
+This WordPress plugin provides specific snippets, customisations, and custom blocks for the Cycle Chesterfield site.
 
 ## Included blocks
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Cycle Chesterfield
- * Plugin URI:  https://example.com/
+ * Plugin URI:  https://github.com/dsas/cycle-chesterfield-plugin
  * Description: Custom functionality plugin for the Cycle Chesterfield site.
  * Version:     1.0.0
  * Author:      Dean Sas
