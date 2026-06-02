@@ -3,7 +3,7 @@
  * Plugin Name: Cycle Chesterfield
  * Plugin URI:  https://github.com/dsas/cycle-chesterfield-plugin
  * Description: Custom functionality plugin for the Cycle Chesterfield site.
- * Version:     1.1.0
+ * Version:     1.2.0
  * Author:      Dean Sas
  * Text Domain: cycle-chesterfield
  */
@@ -78,3 +78,5 @@ function cycle_chesterfield_register_blocks() {
 	register_block_type( __DIR__ . '/blocks/ride-grades' );
 }
 add_action( 'init', 'cycle_chesterfield_register_blocks' );
+
+require_once __DIR__ . '/includes/hide-event-end-times.php';
