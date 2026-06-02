@@ -1,0 +1,78 @@
+<?php
+/**
+ * Ride grade blocks and shared grade data.
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Returns ride grade labels and descriptions.
+ *
+ * @return array<string, array<string, string>>
+ */
+function cycle_chesterfield_get_ride_grades() {
+	return array(
+		'1' => array(
+			'title'       => __( 'Grade 1 Ride', 'cycle-chesterfield' ),
+			'description' => __( 'Mostly level ride on good surfaces, maybe some small hills, under 10 miles. Suitable for all.', 'cycle-chesterfield' ),
+		),
+		'2' => array(
+			'title'       => __( 'Grade 2 Ride', 'cycle-chesterfield' ),
+			'description' => __( 'Mostly level ride over 10 miles, some mixed surfaces, maybe some small hills OR a ride with several noticeable gradients / hills but under 10 miles. Suitable for riders with some experience and the ability to cycle over 10 miles or on several noticeable gradients / hills under 10 miles.', 'cycle-chesterfield' ),
+		),
+		'3' => array(
+			'title'       => __( 'Grade 3 Ride', 'cycle-chesterfield' ),
+			'description' => __( 'Any ride on mixed terrain with noticeable gradients / hills and over 10 miles. Suitable for the more experienced rider who can maintain an easy moderate pace throughout.', 'cycle-chesterfield' ),
+		),
+	);
+}
+
+/**
+ * Registers plugin blocks.
+ */
+function cycle_chesterfield_register_blocks() {
+	$editor_script_dependencies = array(
+		'wp-blocks',
+		'wp-block-editor',
+		'wp-components',
+		'wp-element',
+		'wp-i18n',
+	);
+
+	$plugin_base_file = dirname( __DIR__ ) . '/cycle-chesterfield.php';
+	$plugin_base_path = dirname( __DIR__ ) . '/';
+
+	wp_register_script(
+		'cycle-chesterfield-ride-grade-editor',
+		plugins_url( 'blocks/ride-grade/index.js', $plugin_base_file ),
+		$editor_script_dependencies,
+		filemtime( $plugin_base_path . 'blocks/ride-grade/index.js' ),
+		true
+	);
+
+	wp_add_inline_script(
+		'cycle-chesterfield-ride-grade-editor',
+		'window.cycleChesterfieldRideGrades = ' . wp_json_encode( cycle_chesterfield_get_ride_grades() ) . ';',
+		'before'
+	);
+
+	wp_register_script(
+		'cycle-chesterfield-ride-grades-editor',
+		plugins_url( 'blocks/ride-grades/index.js', $plugin_base_file ),
+		$editor_script_dependencies,
+		filemtime( $plugin_base_path . 'blocks/ride-grades/index.js' ),
+		true
+	);
+
+	wp_add_inline_script(
+		'cycle-chesterfield-ride-grades-editor',
+		'window.cycleChesterfieldRideGrades = ' . wp_json_encode( cycle_chesterfield_get_ride_grades() ) . ';',
+		'before'
+	);
+
+	register_block_type( $plugin_base_path . 'blocks/ride-grade' );
+	register_block_type( $plugin_base_path . 'blocks/ride-grades' );
+}
+add_action( 'init', 'cycle_chesterfield_register_blocks' );
