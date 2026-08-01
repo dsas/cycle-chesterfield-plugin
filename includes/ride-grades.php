@@ -206,6 +206,25 @@ add_action(
 );
 
 /**
+ * Uses the plugin's Events Calendar list-date template for the site event archive.
+ *
+ * @param string          $file     Located template file.
+ * @param array<int, string> $name  Template path parts.
+ * @param Tribe__Template $template Template instance.
+ * @return string
+ */
+function cycle_chesterfield_override_event_list_date_template( $file, $name, $template ) {
+	if ( array( 'list', 'event', 'date' ) !== $name ) {
+		return $file;
+	}
+
+	$override = dirname( __DIR__ ) . '/templates/tec/list-event-date.php';
+
+	return file_exists( $override ) ? $override : $file;
+}
+add_filter( 'tribe_template_file', 'cycle_chesterfield_override_event_list_date_template', 10, 3 );
+
+/**
  * Registers plugin blocks.
  */
 function cycle_chesterfield_register_blocks() {

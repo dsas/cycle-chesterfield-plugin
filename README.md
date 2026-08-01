@@ -21,7 +21,7 @@ When inserted, the block renders a heading such as `Grade 1 Ride` followed by th
 
 This block is limited to one instance per post, which helps keep an event's ride difficulty clear and unambiguous.
 
-When an event is saved, the selected grade is also stored as event metadata. This lets the plugin show the compact grade label alongside that event's date in the `/events` listing and in the homepage Events List widget. Events without a Ride Grade block, including non-ride and older events, do not display a grade.
+When an event is saved, the selected grade is also stored as event metadata. This lets the plugin show the compact grade label alongside that event's date in the `/events` listing and in the homepage Events List widget. Events without a Ride Grade block, including non-ride and older events, do not display a grade. The plugin also supplies the Events Calendar list-date template used by `/events`, so this display customisation deploys with the plugin.
 
 ### Ride Grades
 
