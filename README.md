@@ -8,7 +8,8 @@ Current features:
 
 1. Registers two editor blocks for ride grade content.
 2. Shares centrally managed ride grade labels/descriptions with both blocks.
-3. Hides event end times in The Events Calendar output so time ranges like `6:30 pm - 7:30 pm` display as `6:30 pm`.
+3. Displays optional ride grades in the homepage Events List widget and the `/events` listing.
+4. Hides event end times in The Events Calendar output so time ranges like `6:30 pm - 7:30 pm` display as `6:30 pm`.
 
 ## Included blocks
 
@@ -19,6 +20,8 @@ The `Ride Grade` block lets editors choose a ride grade in the block settings an
 When inserted, the block renders a heading such as `Grade 1 Ride` followed by the appropriate ride description.
 
 This block is limited to one instance per post, which helps keep an event's ride difficulty clear and unambiguous.
+
+When an event is saved, the selected grade is also stored as event metadata. This lets the plugin show the compact grade label alongside that event's date in the `/events` listing and in the homepage Events List widget. Events without a Ride Grade block, including non-ride and older events, do not display a grade.
 
 ### Ride Grades
 
